@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+        <title>Sources - Data Ethics Project</title>
+
+    <style>
+        /* Reset and Base Styles */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212; color: #e0e0e0;
+            line-height: 1.7; padding-top: 80px;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background-color: #1f1f1f; padding: 15px 40px; position: fixed;
+            width: 100%; top: 0; left: 0; z-index: 1000;
+            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+        }
+        .navbar .logo {
+            color: #ff5722; font-size: 1.8rem; font-weight: bold;
+            text-decoration: none; letter-spacing: 0.5px;
+        }
+        .navbar nav ul { list-style: none; display: flex; }
+        .navbar nav ul li { margin-left: 30px; }
+        .navbar nav ul li a {
+            color: #e0e0e0; text-decoration: none; font-weight: 600;
+            padding: 8px 0; border-bottom: 2px solid transparent;
+            transition: color 0.3s ease, border-bottom-color 0.3s ease, text-decoration 0.3s ease;
+        }
+        .navbar nav ul li a:hover, .navbar nav ul li a.active {
+            color: #ff5722; border-bottom-color: #ff5722;
+        }
+
+        /* Hero Sections */
+        .hero { 
+            background: linear-gradient(135deg, #1f1f1f, #2c2c2c);
+            padding: 70px 20px; text-align: center; border-bottom: 1px solid #333;
+        }
+        .hero h1 { font-size: 3rem; color: #ffffff; margin-bottom: 20px; font-weight: 700; }
+        .hero p { font-size: 1.25rem; color: #cfcfcf; margin: 20px auto 0 auto; max-width: 750px; }
+        
+        .hero-simple {
+            background: linear-gradient(135deg, #1f1f1f, #2c2c2c);
+            padding: 50px 20px; text-align: center; border-bottom: 1px solid #333;
+        }
+        .hero-simple h1 { font-size: 2.5rem; color: #ffffff; font-weight: 700; }
+        
+        /* CTA Button */
+        .cta-button {
+            background-color: #ff5722; color: #fff; padding: 15px 30px; border-radius: 5px;
+            text-decoration: none; font-size: 1.1rem; font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: inline-block; box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+        .cta-button:hover { background-color: #e65100; transform: translateY(-2px); }
+
+        /* Main Content & Subsections */
+        .content-section { padding: 40px 20px; max-width: 1000px; margin: 0 auto; }
+        
+        .home-content-block, .ethical-subsection, 
+        .source-category-block, .resource-category, .faq-list,
+        .contact-content-block, .quiz-form { 
+            background-color: #1a1a1a; padding: 30px 35px; margin-bottom: 40px;
+            border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            max-width: 950px; margin-left: auto; margin-right: auto;
+        }
+        .home-content-block h2, .ethical-subsection h2, .contact-content-block h2 {
+            font-size: 2.2rem; color: #ff5722; margin-bottom: 25px;
+            padding-bottom: 10px; border-bottom: 1px solid #333; text-align: center;
+        }
+        .ethical-subsection:not(.home-content-block):not(.source-category-block):not(.resource-category):not(.contact-content-block):not(.quiz-form) h2 {
+             font-size: 2rem; text-align: left;
+        }
+        .home-content-block h3, .ethical-subsection h3, .contact-content-block h3,
+        .source-category-block h3, .resource-category h3 { /* Standardized H3 for category titles */
+            font-size: 1.9rem; color: #ff5722; text-align: center; margin-top: 0;
+            margin-bottom: 25px; padding-bottom: 10px; border-bottom: 1px solid #383838;
+        }
+         .ethical-subsection:not(.home-content-block):not(.source-category-block):not(.resource-category):not(.contact-content-block):not(.quiz-form) h3 {
+            font-size: 1.5rem; color: #ffae42; margin-top:30px; text-align: left; border-bottom: none; padding-bottom: 0;
+        }
+        .home-content-block p, .ethical-subsection p, .contact-content-block p {
+            font-size: 1.1rem; color: #dcdcdc; margin-bottom: 20px; text-align: left;
+            max-width: 900px; margin-left: auto; margin-right: auto;
+        }
+        .ethical-subsection ul { font-size: 1.1rem; color: #dcdcdc; margin-bottom: 15px; text-align: left; list-style-position: outside; padding-left: 25px; }
+        .ethical-subsection li { margin-bottom: 10px; }
+        .ethical-subsection li strong { color: #ffae42; }
+        
+        .key-issues-list { list-style-type: none; padding-left: 0; margin: 20px auto 30px auto; max-width: 850px; text-align: left; }
+        .key-issues-list li { background-color: #202020; padding: 15px; margin-bottom: 1em; border-left: 4px solid #ff5722; border-radius: 4px; }
+        .key-issues-list li strong { color: #ffae42; font-weight: 600; display: block; margin-bottom: 5px; font-size: 1.15rem; }
+        .key-issues-list li p.issue-description { font-size: 1rem; color: #c0c0c0; margin-top: 5px; margin-bottom: 0; line-height: 1.5; }
+
+        .dimension-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 20px; margin-bottom: 20px; }
+        .dimension-item { background-color: #222222; padding: 20px; border-radius: 6px; border-left: 4px solid #ff5722; }
+        .dimension-item h3 { font-size: 1.4rem; color: #ff8a65; margin-top: 0; margin-bottom: 10px; }
+
+        .framework-item { background-color: #202020; padding: 20px; margin-top: 20px; border-radius: 6px; border-top: 3px solid #ff8a65;  }
+        .framework-item h3 { font-size: 1.6rem; color: #ffab91; margin-top: 0; border-bottom: none; padding-bottom: 0; }
+        
+        .resource-intro { text-align: center; max-width: 800px; margin: 0 auto 50px auto; font-size: 1.2rem; color: #e0e0e0; line-height: 1.8; }
+        .resource-intro strong { color: #ff5722;  }
+        
+        .source-entry, .resource-item { /* Removed background and border from general item, will be handled by citation-item or if specifically needed */
+            padding: 0; /* Reset padding if any */
+            margin-bottom: 0; /* Reset margin if any */
+            border-left: none; /* Reset border if any */
+        }
+        .resource-item { /* Specific style for KB items if different from citation items */
+             background-color: #222222; padding: 20px; margin-bottom: 20px; border-radius: 6px;
+            border-left: 4px solid #ff5722;
+        }
+        .resource-item:hover { transform: translateY(-3px); box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
+        .resource-item:last-child { margin-bottom: 0;  }
+        .resource-item h4 { margin-top: 0; margin-bottom: 8px; }
+        .resource-item h4 a { font-size: 1.35rem; color: #ffae42; text-decoration: none; font-weight: 600; }
+        .resource-item h4 a:hover { color: #ff5722; text-decoration: underline; }
+        .resource-meta { font-size: 0.9rem; color: #9e9e9e; margin-bottom: 10px; font-style: italic; }
+        .resource-item p:not(.resource-meta) { font-size: 1.05rem; color: #dcdcdc; margin-bottom: 0; }
+
+        .faq-intro { text-align: center; max-width: 800px; margin: 0 auto 40px auto; font-size: 1.15rem; color: #e0e0e0; }
+        .faq-list { max-width: 900px; margin: 0 auto; }
+        .faq-item { background-color: #1e1e1e; padding: 20px 25px; margin-bottom: 25px; border-radius: 6px; border-left: 4px solid #ff8a65; }
+        .faq-item:last-child { margin-bottom: 0; }
+        .faq-item h3.faq-question { font-size: 1.4rem; color: #ffae42; margin-top: 0; margin-bottom: 10px; line-height: 1.4; text-align: left; }
+        .faq-item p.faq-answer { font-size: 1.05rem; color: #dcdcdc; margin-bottom: 0; text-align: left; }
+
+        .quiz-page-title { font-size: 2.2rem; color: #ff5722; text-align: center; margin-bottom: 30px; }
+        .quiz-form-container { max-width: 800px; margin: 0 auto;}
+        .quiz-question { background-color: #2c2c2c; padding: 20px; margin: 0 auto 20px auto; max-width: 700px; border-radius: 8px; text-align: left; }
+        .quiz-question:last-of-type { margin-bottom: 30px;}
+        .quiz-question label.question-label { font-size: 1.1rem; color: #fff; margin-bottom: 10px; display: block; font-weight: 600; }
+        .quiz-question input[type="radio"] { margin-right: 10px; vertical-align: middle; transform: scale(1.1); accent-color: #ff5722;}
+        .quiz-question br { display: block; content: ""; margin-bottom: 8px; }
+        .quiz-submit-button {
+            display: block; margin: 30px auto 0 auto; background-color: #ff5722;
+            color: #fff; padding: 12px 24px; border-radius: 5px; border: none;
+            font-weight: bold; cursor: pointer; font-size: 1.1rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+        .quiz-submit-button:hover { background-color: #e65100; transform: translateY(-2px); }
+        
+        #contactForm { display: flex; flex-direction: column; align-items: stretch; max-width: 600px; margin-left: auto; margin-right: auto; }
+        #contactForm label { color: #ffffff; margin-bottom: 8px; font-weight: 500; display: block; text-align: left; }
+        #contactForm input[type="text"], #contactForm input[type="email"], #contactForm textarea { padding: 12px 15px; margin-bottom: 20px; width: 100%; border-radius: 5px; border: 1px solid #333; background-color: #2c2c2c; color: #fff; font-size: 1rem;}
+        #contactForm textarea { min-height: 120px; resize: vertical; }
+        #contactForm input[type="text"]:focus, #contactForm input[type="email"]:focus, #contactForm textarea:focus { outline: none; border-color: #ff5722; box-shadow: 0 0 0 2px rgba(255, 87, 34, 0.3); }
+        #contactForm button[type="submit"] { background-color: #ff5722; color: #fff; padding: 12px 25px; border-radius: 5px; border: none; font-weight: bold; font-size: 1.1rem; cursor: pointer; transition: background-color 0.3s ease, transform 0.2s ease; align-self: center; min-width: 150px;}
+        #contactForm button[type="submit"]:hover { background-color: #e65100; transform: translateY(-2px); }
+        .contact-intro { text-align: center; max-width: 700px; margin: 0 auto 30px auto; font-size: 1.15rem; color: #e0e0e0;}
+        .form-note { text-align: center; font-size: 0.9rem; color: #9e9e9e; margin-top: 20px; margin-bottom: 30px; }
+
+        /* --- Citation List Styles --- */
+        .citation-item {
+            font-size: 1rem; 
+            color: #dcdcdc; /* Standard paragraph text color */
+            margin-bottom: 1.2em; /* Space between citations */
+            line-height: 1.6;
+            text-align: left;
+            padding-left: 1.5em; /* For hanging indent visual */
+            text-indent: -1.5em; /* Creates hanging indent */
+        }
+        .citation-item em, .citation-item i { /* For italicized titles as per APA */
+            font-style: italic;
+        }
+        .citation-item a {
+            color: #ffae42; /* Consistent link color from other item links */
+            text-decoration: none;
+        }
+        .citation-item a:hover {
+            color: #ff5722;
+            text-decoration: underline;
+        }
+        .sources-intro-note {
+            text-align: left;
+            max-width: 900px;
+            margin: -10px auto 25px auto; /* Pull up slightly, add space below */
+            font-size: 0.95rem;
+            color: #b0b0b0;
+            font-style: italic;
+        }
+        /* --- End of Citation List Styles --- */
+
+        /* Footer (Standardized) */
+        footer { background-color: #1f1f1f; padding: 40px 20px; text-align: center; border-top: 1px solid #333; }
+        .footer-content p { color: #bdbdbd; margin-bottom: 15px; font-size: 0.95rem; }
+        .license-text { font-size: 0.9rem; color: #9e9e9e; margin-bottom: 20px; }
+        .license-text a { color: #b0b0b0; text-decoration: underline; transition: color 0.3s ease; }
+        .license-text a:hover { color: #ff5722; }
+        .social-links a { color: #ff5722; margin: 0 15px; text-decoration: none; font-weight: bold; font-size: 1rem; transition: color 0.3s ease; }
+        .social-links a:hover { color: #e0e0e0; text-decoration: underline; }
+        
+        @media (max-width: 768px) {
+            .navbar { padding: 15px 20px; flex-direction: column; align-items: flex-start; }
+            .navbar .logo { margin-bottom: 10px; font-size: 1.8rem; }
+            .navbar nav ul { flex-direction: column; width: 100%; }
+            .navbar nav ul li { margin-left: 0; margin-bottom: 5px; width: 100%; }
+            .navbar nav ul li a { display: block; padding: 10px 0; text-align: left; }
+            body { padding-top: 150px;  }
+
+            .hero h1, .hero-simple h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1.1rem; }
+            .cta-button { padding: 12px 24px; font-size: 1rem; }
+            
+            .content-section { padding: 30px 15px; }
+            .home-content-block, .ethical-subsection, 
+            .source-category-block, .resource-category, .faq-list,
+            .contact-content-block, .quiz-form { padding: 20px; }
+
+            .home-content-block h2, .ethical-subsection h2, .quiz-page-title, .contact-content-block h2, 
+            .source-category-block h3, .resource-category h3 { font-size: 1.8rem; }
+            
+            .home-content-block h3, .ethical-subsection:not(.source-category-block):not(.resource-category) h3, 
+            .faq-item h3.faq-question { font-size: 1.4rem; } 
+             .quiz-question label.question-label { font-size: 1.1rem; }
+            
+            .dimension-item h3, .framework-item h3 { font-size: 1.2rem; text-align: left; } 
+            
+            .home-content-block p, .ethical-subsection p, .faq-item p.faq-answer, .contact-content-block p,
+            .citation-item { font-size: 1rem; } /* Ensure citation item font size is responsive */
+            .key-issues-list li strong { font-size: 1.05rem; }
+            .key-issues-list li p.issue-description { font-size: 0.95rem; }
+            .resource-item h4 a, .source-entry h4 a, .source-entry strong.source-title { font-size: 1.2rem; }
+            .contact-intro {font-size: 1.05rem;}
+
+            #contactForm {max-width: 100%;} 
+            .citation-item { padding-left: 1em; text-indent: -1em; } /* Adjust hanging indent for mobile */
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="navbar">
+            <a href="index.html" class="logo">Data Ethics Project</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li> 
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="ethics.html">Ethical Considerations</a></li>
+                    <li><a href="knowledge-base.html">Knowledge Base</a></li>
+                    <li><a href="sources.html" class="active">Sources</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="quiz.html">Quiz</a></li> 
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="hero"> 
+            <h1>Sources</h1>
+            <p>This page provides a comprehensive list of citations for the resources consulted and referenced throughout this project. The citations are formatted in a style similar to APA 7th Edition. Please consult your course guidelines for specific citation requirements.</p>
+        </section>
+
+        <section class="content-section">
+
+
+            <article class="ethical-subsection source-category-block">
+                <h3>Articles, Reports & Publications</h3>
+                <p class="citation-item">Atlan. (n.d.). <em>Data ethics: Frameworks, principles & challenges</em>. Retrieved May 6, 2025, from <a href="https://atlan.com/data-ethics-101/" target="_blank" rel="noopener noreferrer">https://atlan.com/data-ethics-101/</a></p>
+                <p class="citation-item">Cisco. (n.d.). <em>Cisco's 2025 Data Privacy Benchmark Study: Privacy landscape grows increasingly complex in the age of AI</em>. Cisco Newsroom. <a href="https://www.cisco.com/c/en/us/about/trust-center/data-privacy-benchmark-study.html" target="_blank" rel="noopener noreferrer">https://www.cisco.com/c/en/us/about/trust-center/data-privacy-benchmark-study.html</a></p>
+                <p class="citation-item">Coppola, F. (2024, December 3). <em>What is GDPR? General Data Protection Regulation explained</em>. Oracle NetSuite. <a href="https://www.netsuite.com/portal/resource/articles/business-strategy/gdpr.shtml" target="_blank" rel="noopener noreferrer">https://www.netsuite.com/portal/resource/articles/business-strategy/gdpr.shtml</a></p>
+                <p class="citation-item">De Montfort University. (2022, February 23). <em>Study shows privacy policies are longer and harder to understand in 2021</em>. DMU News. <a href="https://www.dmu.ac.uk/about-dmu/news/2022/february/study-shows-privacy-policies-are-longer-and-harder-to-understand-in-2021.aspx" target="_blank" rel="noopener noreferrer">https://www.dmu.ac.uk/about-dmu/news/2022/february/study-shows-privacy-policies-are-longer-and-harder-to-understand-in-2021.aspx</a></p>
+                <p class="citation-item">Electronic Privacy Information Center. (2024). <em>The state of privacy report</em>. EPIC. <a href="https://epic.org/documents/the-state-of-privacy-report/" target="_blank" rel="noopener noreferrer">https://epic.org/documents/the-state-of-privacy-report/</a></p>
+                <p class="citation-item">Park, C. (2020, March 23). <em>How notice and consent fails to protect our privacy</em>. New America. <a href="https://www.newamerica.org/oti/blog/how-notice-and-consent-fails-to-protect-our-privacy/" target="_blank" rel="noopener noreferrer">https://www.newamerica.org/oti/blog/how-notice-and-consent-fails-to-protect-our-privacy/</a></p>
+                <p class="citation-item">TrustCloud. (n.d.). <em>Data privacy and AI: ethical considerations and best practices</em>. TrustCommunity. <a href="https://community.trustcloud.ai/docs/grc-launchpad/grc-101/governance/data-privacy-and-ai-ethical-considerations-and-best-practices/" target="_blank" rel="noopener noreferrer">https://community.trustcloud.ai/docs/grc-launchpad/grc-101/governance/data-privacy-and-ai-ethical-considerations-and-best-practices/</a></p>
+                
+            </article>
+
+            <article class="ethical-subsection source-category-block">
+                <h3>Government, Legal & Official Resources</h3>
+                <p class="citation-item">Federal Trade Commission. (n.d.). <em>Privacy and security</em>. Retrieved May 6, 2025, from <a href="https://www.ftc.gov/business-guidance/privacy-security" target="_blank" rel="noopener noreferrer">https://www.ftc.gov/business-guidance/privacy-security</a></p>
+                <p class="citation-item">GDPR-info.eu. (n.d.). <em>General Data Protection Regulation (GDPR)</em>. Retrieved May 6, 2025, from <a href="https://gdpr-info.eu/" target="_blank" rel="noopener noreferrer">https://gdpr-info.eu/</a></p>
+                <p class="citation-item">State of California Department of Justice. (n.d.). <em>California Consumer Privacy Act (CCPA)</em>. Retrieved May 6, 2025, from <a href="https://oag.ca.gov/privacy/ccpa" target="_blank" rel="noopener noreferrer">https://oag.ca.gov/privacy/ccpa</a></p>
+            </article>
+
+            <article class="ethical-subsection source-category-block">
+                 <h3>Organizational Resources & Websites</h3>
+                <p class="citation-item">Electronic Frontier Foundation. (n.d.). <em>Home</em>. Retrieved May 6, 2025, from <a href="https://www.eff.org/" target="_blank" rel="noopener noreferrer">https://www.eff.org/</a></p>
+                <p class="citation-item">Wikipedia contributors. (n.d.). <em>FTC regulation of behavioral advertising</em>. In Wikipedia. Retrieved May 6, 2025, from <a href="https://en.wikipedia.org/wiki/FTC_regulation_of_behavioral_advertising" target="_blank" rel="noopener noreferrer">https://en.wikipedia.org/wiki/FTC_regulation_of_behavioral_advertising</a></p>
+            </article>
+
+            <article class="ethical-subsection source-category-block">
+                <h3>Videos & Documentaries</h3>
+                <p class="citation-item">The Guardian. (2016, January 28). <em>The Power of Privacy – documentary film</em> [Video]. YouTube. <a href="http://www.youtube.com/watch?v=KGX-c5BJNFk" target="_blank" rel="noopener noreferrer">http://www.youtube.com/watch?v=KGX-c5BJNFk</a> (Note: Replace with actual YouTube URL if available)</p>
+                <p class="citation-item">Stanford. (2020, June 10). <em>Data Privacy, Ethics, and Policy</em> [Video]. YouTube. <a href="http://www.youtube.com/watch?v=lWbD75PqEq0" target="_blank" rel="noopener noreferrer">http://www.youtube.com/watch?v=lWbD75PqEq0</a> (Note: Replace with actual YouTube URL if available)</p>
+                <p class="citation-item">Schillings. (2022, November 3). <em>Accept All: Unacceptable? - a documentary about data privacy</em> [Video]. YouTube. <a href="http://www.youtube.com/watch?v=OrRvQt5NztQ" target="_blank" rel="noopener noreferrer">http://www.youtube.com/watch?v=OrRvQt5NztQ</a> (Note: Replace with actual YouTube URL if available)</p>
+            </article>
+
+        </section>
+    </main>
+
+    <footer> 
+        <div class="footer-content">
+            <p class="license-text">
+                This project is licensed under
+                <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener noreferrer">
+                    CC BY-NC 4.0 – Attribution-Non-Commercial
+                </a>.
+            </p>
+            <div class="social-links">
+                <a href="mailto:thiessc8280@my.uwstout.edu">Email </a>
+            </div>
+        
+        </div>
+    </footer>
+
+</body>
+</html>

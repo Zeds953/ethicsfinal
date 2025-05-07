@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+       <title>FAQ - Data Ethics Project</title>
+
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212;
+            color: #e0e0e0; 
+            line-height: 1.7; 
+            padding-top: 80px; 
+        }
+
+        /* Navigation Bar (Standardized) */
+        .navbar {
+            background-color: #1f1f1f;
+            padding: 15px 40px; 
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000; 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.7); 
+        }
+
+        .navbar .logo {
+            color: #ff5722; 
+            font-size: 1.8rem; 
+            font-weight: bold;
+            text-decoration: none;
+            letter-spacing: 0.5px; 
+        }
+
+        .navbar nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .navbar nav ul li {
+            margin-left: 30px; 
+        }
+
+        .navbar nav ul li a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 0; 
+            border-bottom: 2px solid transparent; 
+            transition: color 0.3s ease, border-bottom-color 0.3s ease, text-decoration 0.3s ease;
+        }
+
+        .navbar nav ul li a:hover,
+        .navbar nav ul li a.active {
+            color: #ff5722;
+            border-bottom-color: #ff5722;
+            /* text-decoration: underline; */ 
+        }
+
+        /* Hero Sections */
+        .hero { 
+            background: linear-gradient(135deg, #1f1f1f, #2c2c2c);
+            padding: 80px 20px; 
+            text-align: center;
+            border-bottom: 1px solid #333; 
+        }
+        .hero h1 { font-size: 3rem; color: #ffffff; margin-bottom: 20px; font-weight: 700; }
+        .hero p { font-size: 1.25rem; color: #cfcfcf; margin: 20px auto 30px auto; max-width: 750px; }
+        
+        .hero-simple { /* For inner pages like FAQ */
+            background: linear-gradient(135deg, #1f1f1f, #2c2c2c);
+            padding: 50px 20px;
+            text-align: center;
+            border-bottom: 1px solid #333;
+        }
+        .hero-simple h1 { font-size: 2.5rem; color: #ffffff; font-weight: 700; }
+        
+        /* CTA Button */
+        .cta-button {
+            background-color: #ff5722; color: #fff; padding: 15px 30px; border-radius: 5px;
+            text-decoration: none; font-size: 1.1rem; font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: inline-block; box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+        .cta-button:hover { background-color: #e65100; transform: translateY(-2px); }
+
+        /* Main Content Area & Subsection Styling */
+        .content-section { padding: 40px 20px; max-width: 1000px; margin: 0 auto; }
+        
+        .home-content-block, /* For index page main content */
+        .ethical-subsection, /* For ethics page & reusable blocks */
+        .source-category-block, /* For sources page categories */
+        .resource-category { /* For knowledge base categories */
+            background-color: #1a1a1a; padding: 30px 35px; margin-bottom: 40px;
+            border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            max-width: 950px; margin-left: auto; margin-right: auto;
+        }
+        .home-content-block h2, .ethical-subsection h2 {
+            font-size: 2.2rem; color: #ff5722; margin-bottom: 25px;
+            padding-bottom: 10px; border-bottom: 1px solid #333; text-align: center;
+        }
+        /* Specific H2 for ethics page if different styling needed */
+        .ethical-subsection:not(.home-content-block):not(.source-category-block):not(.resource-category) h2 {
+             font-size: 2rem; text-align: left; /* Default for ethics page H2s */
+        }
+
+        .home-content-block h3, .ethical-subsection h3 {
+            font-size: 1.6rem; color: #ffae42; margin-top: 30px; margin-bottom: 15px; text-align: left;
+        }
+        /* Specific H3 for ethics page if different styling needed */
+         .ethical-subsection:not(.home-content-block):not(.source-category-block):not(.resource-category) h3 {
+            font-size: 1.5rem; /* Standard for ethics page subsections */
+        }
+
+
+        .home-content-block p, .ethical-subsection p {
+            font-size: 1.1rem; color: #dcdcdc; margin-bottom: 20px; text-align: left;
+            max-width: 900px; margin-left: auto; margin-right: auto;
+        }
+        .ethical-subsection ul { font-size: 1.1rem; color: #dcdcdc; margin-bottom: 15px; text-align: left; list-style-position: outside; padding-left: 25px; }
+        .ethical-subsection li { margin-bottom: 10px; }
+        .ethical-subsection li strong { color: #ffae42; }
+        
+        .key-issues-list { list-style-type: none; padding-left: 0; margin: 20px auto 30px auto; max-width: 850px; text-align: left; }
+        .key-issues-list li { background-color: #202020; padding: 15px; margin-bottom: 1em; border-left: 4px solid #ff5722; border-radius: 4px; }
+        .key-issues-list li strong { color: #ffae42; font-weight: 600; display: block; margin-bottom: 5px; font-size: 1.15rem; }
+        .key-issues-list li p.issue-description { font-size: 1rem; color: #c0c0c0; margin-top: 5px; margin-bottom: 0; line-height: 1.5; }
+
+        .dimension-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 20px; margin-bottom: 20px; }
+        .dimension-item { background-color: #222222; padding: 20px; border-radius: 6px; border-left: 4px solid #ff5722; }
+        .dimension-item h3 { font-size: 1.4rem; color: #ff8a65; margin-top: 0; margin-bottom: 10px; }
+
+        .framework-item { background-color: #202020; padding: 20px; margin-top: 20px; border-radius: 6px; border-top: 3px solid #ff8a65;  }
+        .framework-item h3 { font-size: 1.6rem; color: #ffab91; margin-top: 0; border-bottom: none; padding-bottom: 0; }
+        
+        .resource-intro { text-align: center; max-width: 800px; margin: 0 auto 50px auto; font-size: 1.2rem; color: #e0e0e0; line-height: 1.8; }
+        .resource-intro strong { color: #ff5722;  }
+        
+        .source-category-block h3, .resource-category h3 {
+            font-size: 1.9rem; color: #ff5722; text-align: center; margin-top: 0;
+            margin-bottom: 25px; padding-bottom: 10px; border-bottom: 1px solid #383838;
+        }
+        .source-entry, .resource-item {
+            background-color: #222222; padding: 20px; margin-bottom: 20px; border-radius: 6px;
+            border-left: 4px solid #ff5722; transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+        }
+        .source-entry:hover, .resource-item:hover { transform: translateY(-3px); box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
+        .source-entry:last-child, .resource-item:last-child { margin-bottom: 0;  }
+        
+        .source-entry h4, .resource-item h4 { margin-top: 0; margin-bottom: 8px; }
+        .source-entry h4 a, .resource-item h4 a { font-size: 1.35rem; color: #ffae42; text-decoration: none; font-weight: 600; }
+        .source-entry h4 a:hover, .resource-item h4 a:hover { color: #ff5722; text-decoration: underline; }
+        
+        .source-entry strong.source-title { font-size: 1.25rem; color: #ffae42; display: block; margin-bottom: 5px; font-weight: 600; }
+        .source-entry p:not(.meta-info) { font-size: 1.05rem; color: #dcdcdc; margin-bottom: 8px; }
+        .source-entry p:last-of-type { margin-bottom: 0; }
+        .source-entry a { color: #ffae42; text-decoration: none; }
+        .source-entry a:hover { color: #ff5722; text-decoration: underline; }
+        .source-meta, .resource-meta { font-size: 0.9rem; color: #9e9e9e; margin-bottom: 10px; font-style: italic; }
+        .resource-item p:not(.resource-meta) { font-size: 1.05rem; color: #dcdcdc; margin-bottom: 0; }
+
+        /* --- FAQ Page Specific Styles --- */
+        .faq-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 40px auto; /* Space below intro */
+            font-size: 1.15rem; 
+            color: #e0e0e0; 
+        }
+
+        .faq-list { /* Container for all FAQ items */
+            max-width: 900px; 
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background-color: #1e1e1e; 
+            padding: 20px 25px;
+            margin-bottom: 25px;
+            border-radius: 6px;
+            border-left: 4px solid #ff8a65; /* Secondary accent for FAQ items */
+        }
+
+        .faq-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .faq-item h3.faq-question { /* Styling for the question */
+            font-size: 1.4rem; 
+            color: #ffae42; /* Secondary accent color, consistent with .ethical-subsection h3 */
+            margin-top: 0;
+            margin-bottom: 10px;
+            line-height: 1.4;
+            text-align: left; /* Keep questions left-aligned */
+        }
+
+        .faq-item p.faq-answer { /* Styling for the answer */
+            font-size: 1.05rem;
+            color: #dcdcdc; 
+            margin-bottom: 0;
+            text-align: left;
+        }
+        /* --- End of FAQ Page Specific Styles --- */
+
+        /* Footer (Standardized) */
+        footer { background-color: #1f1f1f; padding: 40px 20px; text-align: center; border-top: 1px solid #333; }
+        .footer-content p { color: #bdbdbd; margin-bottom: 15px; font-size: 0.95rem; }
+        .license-text { font-size: 0.9rem; color: #9e9e9e; margin-bottom: 20px; }
+        .license-text a { color: #b0b0b0; text-decoration: underline; transition: color 0.3s ease; }
+        .license-text a:hover { color: #ff5722; }
+        .social-links a { color: #ff5722; margin: 0 15px; text-decoration: none; font-weight: bold; font-size: 1rem; transition: color 0.3s ease; }
+        .social-links a:hover { color: #e0e0e0; text-decoration: underline; }
+        
+        /* Form Styling (Standardized) */
+        form { display: flex; flex-direction: column; align-items: center; margin-top: 30px; max-width: 500px; margin-left: auto; margin-right: auto; }
+        form label { color: #ffffff; margin-bottom: 10px; font-weight: 500; width: 100%; text-align: left; }
+        form input, form textarea { padding: 15px; margin-bottom: 25px; width: 100%; border-radius: 5px; border: 1px solid #333; background-color: #2c2c2c; color: #fff; font-size: 1rem; }
+        form input:focus, form textarea:focus { outline: none; border-color: #ff5722; box-shadow: 0 0 5px rgba(255, 87, 34, 0.5); }
+        form button { background-color: #ff5722; color: #fff; padding: 15px 30px; border-radius: 5px; border: none; font-weight: bold; font-size: 1.1rem; cursor: pointer; transition: background-color 0.3s ease, transform 0.2s ease; }
+        form button:hover { background-color: #e65100; transform: translateY(-2px); }
+
+        /* Responsive Adjustments (Standardized) */
+        @media (max-width: 768px) {
+            .navbar { padding: 15px 20px; flex-direction: column; align-items: flex-start; }
+            .navbar .logo { margin-bottom: 10px; font-size: 1.8rem; }
+            .navbar nav ul { flex-direction: column; width: 100%; }
+            .navbar nav ul li { margin-left: 0; margin-bottom: 5px; width: 100%; }
+            .navbar nav ul li a { display: block; padding: 10px 0; text-align: left; }
+            body { padding-top: 150px;  }
+
+            .hero h1, .hero-simple h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1.1rem; }
+            .cta-button { padding: 12px 24px; font-size: 1rem; }
+            
+            .content-section { padding: 30px 15px; }
+            .home-content-block, .ethical-subsection, .source-category-block, .resource-category { padding: 20px; }
+            .home-content-block h2, .ethical-subsection h2 { font-size: 1.8rem; }
+            .home-content-block h3, .ethical-subsection h3, .source-category-block h3, .resource-category h3, .faq-item h3.faq-question { font-size: 1.4rem; /* Unified H3 size for mobile content blocks */ }
+            .dimension-item h3, .framework-item h3 { font-size: 1.3rem; text-align: left; } /* More specific h3s */
+            
+            .home-content-block p, .ethical-subsection p, .faq-item p.faq-answer { font-size: 1rem; }
+            .key-issues-list li strong { font-size: 1.05rem; }
+            .key-issues-list li p.issue-description { font-size: 0.95rem; }
+            .resource-item h4 a, .source-entry h4 a, .source-entry strong.source-title { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="navbar">
+            <a href="index.html" class="logo">Data Ethics Project</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li> 
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="ethics.html">Ethical Considerations</a></li>
+                    <li><a href="knowledge-base.html">Knowledge Base</a></li>
+                    <li><a href="sources.html">Sources</a></li>
+                    <li><a href="faq.html" class="active">FAQ</a></li> <li><a href="quiz.html">Quiz</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-simple">
+            <h1>Frequently Asked Questions</h1>
+        </section>
+
+        <section class="content-section">
+            <p class="faq-intro">
+                Explore common questions about data transparency, governance, and the ethical implications surrounding data privacy.
+            </p>
+
+            <div class="faq-list">
+                <article class="faq-item">
+                    <h3 class="faq-question">What is data transparency?</h3>
+                    <p class="faq-answer">Data transparency means being open and clear about how personal data is collected, used, stored, and shared. It empowers users to make informed decisions about their privacy and data rights.</p>
+                </article>
+
+                <article class="faq-item">
+                    <h3 class="faq-question">Why is data governance important?</h3>
+                    <p class="faq-answer">Data governance defines who can take what action with what data, and under what circumstances. It ensures accountability, protects user data, and helps organizations meet legal and ethical obligations.</p>
+                </article>
+
+                <article class="faq-item">
+                    <h3 class="faq-question">What is the GDPR?</h3>
+                    <p class="faq-answer">The General Data Protection Regulation (GDPR) is a legal framework adopted by the European Union that sets strict rules on how personal data is collected and managed. It gives individuals greater control over their personal information.</p>
+                </article>
+
+                <article class="faq-item">
+                    <h3 class="faq-question">How is the U.S. different from the EU in terms of data privacy?</h3>
+                    <p class="faq-answer">The U.S. lacks a unified federal data privacy law. Instead, it has a patchwork of sector-specific regulations. This creates gaps in user protections, unlike the EU’s GDPR which is comprehensive and standardized.</p>
+                </article>
+
+                <article class="faq-item">
+                    <h3 class="faq-question">What ethical issues arise from lack of data transparency?</h3>
+                    <p class="faq-answer">Without transparency, users cannot give informed consent. This opens the door to exploitation, manipulation, and loss of autonomy—undermining trust in digital systems and raising serious moral concerns.</p>
+                </article>
+
+                <article class="faq-item">
+                    <h3 class="faq-question">How do companies benefit from lack of regulation?</h3>
+                    <p class="faq-answer">When regulations are weak, companies may prioritize profits by collecting and selling user data with minimal oversight. This often comes at the expense of user privacy and ethical standards.</p>
+                </article>
+
+                <article class="faq-item">
+                    <h3 class="faq-question">Can ethical frameworks help address data privacy issues?</h3>
+                    <p class="faq-answer">Yes. Approaches like deontology (duty-based ethics), utilitarianism (greatest good for the greatest number), and virtue ethics (character-based decisions) all offer different lenses to evaluate data practices and promote ethical standards.</p>
+                </article>
+
+                <article class="faq-item">
+                    <h3 class="faq-question">What are dark patterns in data collection?</h3>
+                    <p class="faq-answer">Dark patterns are design tactics used to manipulate users into giving up more data than they intend to. These include confusing language, pre-selected checkboxes, or misleading navigation meant to obscure choices.</p>
+                </article>
+
+                <article class="faq-item">
+                    <h3 class="faq-question">What role does lobbying play in data legislation?</h3>
+                    <p class="faq-answer">Major tech companies often use lobbying to influence lawmakers and prevent stricter privacy regulations. This can delay or weaken efforts to pass meaningful protections for consumers.</p>
+                </article>
+
+                <article class="faq-item">
+                    <h3 class="faq-question">How can users protect themselves?</h3>
+                    <p class="faq-answer">Users can protect themselves by reading privacy policies, using privacy-focused tools (like ad blockers or encrypted messaging apps), managing app permissions, researching the topic, and supporting stronger privacy legislation.</p>
+                </article>
+
+                           </div>
+        </section>
+    </main>
+
+    <footer> 
+        <div class="footer-content">
+            <p class="license-text">
+                This project is licensed under
+                <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener noreferrer">
+                    CC BY-NC 4.0 – Attribution-Non-Commercial
+                </a>.
+            </p>
+            <div class="social-links">
+                <a href="mailto:thiessc8280@my.uwstout.edu">Email</a>
+            </div>
+        
+        </div>
+    </footer>
+</body>
+</html>

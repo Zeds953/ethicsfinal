@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+
+    <title>Data Ethics Project - Home</title>
+
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212;
+            color: #e0e0e0; 
+            line-height: 1.6; 
+            padding-top: 80px; 
+        }
+
+        /* Navigation Bar (Standardized) */
+        .navbar {
+            background-color: #1f1f1f;
+            padding: 15px 40px; 
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000; 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.7); 
+        }
+
+        .navbar .logo {
+            color: #ff5722; 
+            font-size: 1.8rem; /* CORRECTED: Standardized logo size */
+            font-weight: bold;
+            text-decoration: none;
+            letter-spacing: 0.5px; 
+        }
+
+        .navbar nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .navbar nav ul li {
+            margin-left: 30px; 
+        }
+
+        .navbar nav ul li a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 0; 
+            border-bottom: 2px solid transparent; 
+            transition: color 0.3s ease, border-bottom-color 0.3s ease, text-decoration 0.3s ease;
+        }
+
+        .navbar nav ul li a:hover,
+        .navbar nav ul li a.active {
+            color: #ff5722;
+            border-bottom-color: #ff5722;
+            /* text-decoration: underline; */ 
+        }
+
+        /* --- Styles for index.html specific Hero --- */
+        .hero-main { 
+            background: linear-gradient(135deg, #1f1f1f, #2c2c2c);
+            padding: 60px 20px; 
+            text-align: center;
+            border-bottom: 1px solid #333;
+        }
+
+        .hero-main h1 {
+            font-size: 2.8rem; 
+            color: #ffffff; 
+            margin-bottom: 20px;
+            font-weight: 700; 
+        }
+
+        .hero-main p {
+            font-size: 1.2rem; 
+            color: #cfcfcf;
+            margin: 20px auto; 
+            max-width: 700px; 
+        }
+        
+        .cta-button { 
+            background-color: #ff5722;
+            color: #fff;
+            padding: 12px 24px; 
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1.1rem; 
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease; 
+            display: inline-block; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3); 
+        }
+        .cta-button:hover {
+            background-color: #e65100; 
+            transform: translateY(-2px); 
+        }
+        
+        /* Simple Hero Section for other Inner Pages (for completeness of CSS block) */
+        .hero-simple {
+            background: linear-gradient(135deg, #1f1f1f, #2c2c2c);
+            padding: 50px 20px;
+            text-align: center;
+            border-bottom: 1px solid #333;
+        }
+        .hero-simple h1 { font-size: 2.5rem; color: #ffffff; font-weight: 700; }
+
+        /* Main Content Area Styling (Standardized) */
+        .content-section { 
+            padding: 40px 20px; 
+        }
+        
+        /* --- Styles for index.html specific .content section --- */
+        .home-content-block { 
+            background-color: #1a1a1a; 
+            padding: 30px 35px; 
+            margin: 0 auto 40px auto; 
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            max-width: 950px; 
+        }
+
+        .home-content-block h2 { 
+            font-size: 2.2rem; 
+            color: #ff5722; 
+            margin-bottom: 25px; 
+            padding-bottom: 10px;
+            border-bottom: 1px solid #333; 
+            text-align: center; 
+        }
+
+        .home-content-block h3 { 
+            font-size: 1.6rem; 
+            color: #ffae42; 
+            margin-top: 30px; 
+            margin-bottom: 15px;
+            text-align: left; 
+        }
+        
+        .home-content-block p { 
+            font-size: 1.1rem; 
+            color: #dcdcdc; 
+            margin-bottom: 20px; 
+            text-align: left; 
+            max-width: 900px; 
+            margin-left: auto; 
+            margin-right: auto; 
+        }
+        
+        /* Key Issues List Specific Styling */
+        .key-issues-list {
+            list-style-type: none;
+            padding-left: 0; 
+            margin: 20px auto 30px auto; 
+            max-width: 850px; 
+            text-align: left;
+        }
+        .key-issues-list li {
+            background-color: #202020; 
+            padding: 15px;
+            margin-bottom: 1em; 
+            border-left: 4px solid #ff5722; 
+            border-radius: 4px;
+        }
+        .key-issues-list li strong {
+            color: #ffae42; 
+            font-weight: 600;
+            display: block;
+            margin-bottom: 5px;
+            font-size: 1.15rem;
+        }
+        .key-issues-list li p.issue-description {
+             font-size: 1rem; 
+             color: #c0c0c0; 
+             margin-top: 5px;
+             margin-bottom: 0;
+             line-height: 1.5;
+        }
+
+
+        /* --- Standardized styles from other pages for completeness --- */
+        .ethical-subsection { 
+            background-color: #1a1a1a; padding: 25px 30px; margin-bottom: 40px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        .ethical-subsection h2 { font-size: 2rem; color: #ff5722; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #333; }
+        .ethical-subsection h3 { font-size: 1.5rem; color: #ffae42; margin-top: 25px; margin-bottom: 15px; }
+        .ethical-subsection p { font-size: 1.1rem; color: #dcdcdc; margin-bottom: 15px; text-align: left; }
+        .ethical-subsection ul { font-size: 1.1rem; color: #dcdcdc; margin-bottom: 15px; text-align: left; list-style-position: outside; padding-left: 25px; }
+        .ethical-subsection li { margin-bottom: 10px; }
+        .ethical-subsection li strong { color: #ffae42; }
+
+        .dimension-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 20px; margin-bottom: 20px; }
+        .dimension-item { background-color: #222222; padding: 20px; border-radius: 6px; border-left: 4px solid #ff5722; }
+        .dimension-item h3 { font-size: 1.4rem; color: #ff8a65; margin-top: 0; margin-bottom: 10px; }
+
+        .framework-item { background-color: #202020; padding: 20px; margin-top: 20px; border-radius: 6px; border-top: 3px solid #ff8a65;  }
+        .framework-item h3 { font-size: 1.6rem; color: #ffab91; margin-top: 0; border-bottom: none; padding-bottom: 0; }
+        
+        .resource-intro { text-align: center; max-width: 800px; margin: 0 auto 50px auto; font-size: 1.2rem; color: #e0e0e0; line-height: 1.8; }
+        .resource-intro strong { color: #ff5722;  }
+        .resource-category h3 { font-size: 1.9rem; color: #ff5722; text-align: center; margin-top: 0; margin-bottom: 25px; padding-bottom: 10px; border-bottom: 1px solid #383838;  }
+        .resource-item { background-color: #222222; padding: 20px; margin-bottom: 20px; border-radius: 6px; border-left: 4px solid #ff5722; transition: transform 0.2s ease-out, box-shadow 0.2s ease-out; }
+        .resource-item:hover { transform: translateY(-3px); box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
+        .resource-item:last-child { margin-bottom: 0;  }
+        .resource-item h4 { margin-top: 0; margin-bottom: 8px; }
+        .resource-item h4 a { font-size: 1.35rem; color: #ffae42; text-decoration: none; font-weight: 600; }
+        .resource-item h4 a:hover { color: #ff5722; text-decoration: underline; }
+        .resource-meta { font-size: 0.9rem; color: #9e9e9e; margin-bottom: 10px; font-style: italic; }
+        .resource-item p:not(.resource-meta) { font-size: 1.05rem; color: #dcdcdc; margin-bottom: 0; }
+
+        .source-category-block h3 { font-size: 1.9rem; color: #ff5722; text-align: center; margin-top: 0; margin-bottom: 25px; padding-bottom: 10px; border-bottom: 1px solid #383838; }
+        .source-entry { background-color: #222222; padding: 20px; margin-bottom: 20px; border-radius: 6px; border-left: 4px solid #ff5722; transition: transform 0.2s ease-out, box-shadow 0.2s ease-out; }
+        .source-entry:hover { transform: translateY(-3px); box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
+        .source-entry:last-child { margin-bottom: 0; }
+        .source-entry strong.source-title { font-size: 1.25rem; color: #ffae42; display: block; margin-bottom: 5px; font-weight: 600; }
+        .source-entry p:not(.meta-info) { font-size: 1.05rem; color: #dcdcdc; margin-bottom: 8px; }
+        .source-entry p:last-of-type { margin-bottom: 0; }
+        .source-entry a { color: #ffae42; text-decoration: none; }
+        .source-entry a:hover { color: #ff5722; text-decoration: underline; }
+        /* --- End of Standardized styles --- */
+
+
+        /* Footer (Standardized) */
+        footer {
+            background-color: #1f1f1f;
+            padding: 40px 20px; 
+            text-align: center;
+            border-top: 1px solid #333;
+        }
+
+        .footer-content p {
+            color: #bdbdbd;
+            margin-bottom: 15px; 
+            font-size: 0.95rem; 
+        }
+
+        .license-text {
+            font-size: 0.9rem;
+            color: #9e9e9e; 
+            margin-bottom: 20px; 
+        }
+
+        .license-text a {
+            color: #b0b0b0; 
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+        .license-text a:hover { color: #ff5722; }
+
+        .social-links a {
+            color: #ff5722;
+            margin: 0 15px; 
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem; 
+            transition: color 0.3s ease;
+        }
+        .social-links a:hover { color: #e0e0e0; text-decoration: underline; }
+        
+        /* Form Styling (Standardized) */
+        form { display: flex; flex-direction: column; align-items: center; margin-top: 30px; max-width: 500px; margin-left: auto; margin-right: auto; }
+        form label { color: #ffffff; margin-bottom: 10px; font-weight: 500; width: 100%; text-align: left; }
+        form input, form textarea { padding: 15px; margin-bottom: 25px; width: 100%; border-radius: 5px; border: 1px solid #333; background-color: #2c2c2c; color: #fff; font-size: 1rem; }
+        form input:focus, form textarea:focus { outline: none; border-color: #ff5722; box-shadow: 0 0 5px rgba(255, 87, 34, 0.5); }
+        form button { background-color: #ff5722; color: #fff; padding: 15px 30px; border-radius: 5px; border: none; font-weight: bold; font-size: 1.1rem; cursor: pointer; transition: background-color 0.3s ease, transform 0.2s ease; }
+        form button:hover { background-color: #e65100; transform: translateY(-2px); }
+
+
+        /* Responsive Adjustments (Standardized) */
+        @media (max-width: 768px) {
+            .navbar { padding: 15px 20px; flex-direction: column; align-items: flex-start; }
+            .navbar .logo { margin-bottom: 10px; font-size: 1.8rem; /* Standardized logo size on mobile */ }
+            .navbar nav ul { flex-direction: column; width: 100%; }
+            .navbar nav ul li { margin-left: 0; margin-bottom: 5px; width: 100%; }
+            .navbar nav ul li a { display: block; padding: 10px 0; text-align: left; }
+            body { padding-top: 150px;  }
+
+            .hero-main h1 { font-size: 2.2rem; } 
+            .hero-main p { font-size: 1.1rem; }
+            .cta-button { padding: 12px 24px; font-size: 1rem; }
+            
+            .hero-simple h1 { font-size: 2rem; }
+            .content-section { padding: 30px 15px; }
+
+            .home-content-block { padding: 20px; }
+            .home-content-block h2 { font-size: 1.8rem; }
+            .home-content-block h3 { font-size: 1.4rem; }
+            .home-content-block p { font-size: 1rem; }
+            .key-issues-list li strong { font-size: 1.05rem; }
+            .key-issues-list li p.issue-description { font-size: 0.95rem; }
+            
+            .ethical-subsection { padding: 20px; }
+            .ethical-subsection h2 { font-size: 1.8rem; }
+            .ethical-subsection h3 { font-size: 1.6rem; } /* Fallback for other h3s */
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="navbar">
+            <a href="index.html" class="logo">Data Ethics Project</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html"class="active">Home</a></li> 
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="ethics.html">Ethical Considerations</a></li>
+                    <li><a href="knowledge-base.html">Knowledge Base</a></li>
+                    <li><a href="sources.html">Sources</a></li>
+                    <li><a href="faq.html">FAQ</a></li> <li><a href="quiz.html">Quiz</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-main"> 
+            <h1>Data Governance Awareness</h1>
+            <p>In today’s digital world, many people are unaware of how their personal data is being used, shared, and sometimes exploited. Data governance and transparency are crucial to understanding how corporations handle our data—and the ethical dilemmas that arise when that data is used without clear consent. This project explores the challenges surrounding data privacy, comparing practices in the U.S. with global standards like the EU's GDPR, and raises awareness of the need for stronger regulations to protect individuals' rights.</p>
+            <a href="ethics.html" class="cta-button">Learn More</a>
+        </section>
+
+        <section class="content-section">
+            <article class="home-content-block"> 
+                <h2>About the Ethical Dilemma</h2>
+                <p>The ethical dilemma we face today is the widespread lack of data transparency and governance in the United States. Large corporations control how user data is collected, used, and shared, often hiding their practices behind complex Terms of Service (ToS) agreements and exerting influence through lobbying efforts. This lack of transparency allows businesses to profit from user data with minimal accountability or consent, raising serious ethical concerns related to privacy, autonomy, and exploitation.</p>
+
+                <h3>Key Issues:</h3>
+                <ul class="key-issues-list">
+                    <li>
+                        <strong>Lack of Transparency</strong>
+                        <p class="issue-description">Corporations often obscure their data practices behind jargon-filled contracts, leaving users unaware of how their data is being utilized or shared.</p>
+                    </li>
+                    <li>
+                        <strong>Political Influence and Lobbying</strong>
+                        <p class="issue-description">Powerful tech companies actively lobby against meaningful data privacy laws, delaying or weakening efforts to implement strong regulations that could protect users.</p>
+                    </li>
+                    <li>
+                        <strong>Exploitation of User Data</strong>
+                        <p class="issue-description">Businesses profit from user data without proper consent, leaving individuals with little control over how their information is used or shared.</p>
+                    </li>
+                </ul>
+
+                <p>In contrast, Europe’s General Data Protection Regulation (GDPR) imposes strong protections, requiring transparency, accountability, and user control over personal data. This regulatory model gives individuals more control and ensures that their data is handled responsibly, which starkly contrasts with the largely unregulated environment in the U.S.</p>
+                <p>This disparity highlights the critical need for ethical reflection and policy reform in the U.S. Without robust regulations, users remain vulnerable to surveillance, manipulation, and the misuse of their data, while corporations continue to expand their control unchecked.</p>
+            </article>
+        </section>
+    </main>
+
+    <footer> 
+        <div class="footer-content">
+            <p class="license-text">
+                This project is licensed under
+                <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener noreferrer">
+                    CC BY-NC 4.0 – Attribution-Non-Commercial
+                </a>.
+            </p>
+            <div class="social-links">
+                <a href="mailto:thiessc8280@my.uwstout.edu">Email</a>
+            </div>
+          
+        </div>
+    </footer>
+</body>
+</html>
